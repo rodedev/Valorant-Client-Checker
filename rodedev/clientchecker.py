@@ -4,17 +4,14 @@ import random
 import time
 import os
 import pyautogui
-import pytesseract
-from PIL import Image
 import requests
 import subprocess
 import unicodedata
 import base64
+import http.client
+import json
 
 # this system made by @Rodedev, my discord: peygamber, my discord server: https://discord.gg/apiland
-
-os.environ['TESSDATA_PREFIX'] = r"C:\Program Files\Tesseract-OCR\tessdata"
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 def human_delay(a=1.2, b=2.7):
     time.sleep(random.uniform(a, b))
@@ -24,10 +21,6 @@ chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 def normalize_text(text):
     return unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore').decode('ASCII').lower()
-
-import http.client
-import json
-import base64
 
 API_KEY= "paste_your_api_key_here"
 
@@ -58,8 +51,6 @@ def image_to_text_api(image_path):
     except Exception as e:
         print("API isteği başarısız:", e)
         return ""
-
-
 
 async def main():
     r = requests.session()
